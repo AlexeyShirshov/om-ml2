@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<oos:WXMLModel xmlns:oos="http://wise-orm.com/WXMLSchema.xsd" defaultNamespace="yyy">
+  <oos:Linq contextName="LinqCtx" filename="linq" enable="true" />
+  
+  <oos:Types>
+		<oos:Type id="tString">
+			<oos:ClrType name="System.String"/>
+		</oos:Type>
+		<oos:Type id="tInt32">
+			<oos:ClrType name="System.Int32"/>
+		</oos:Type>
+    <oos:Type id="tInterface">
+      <oos:UserType name="test.MyInterface" />
+    </oos:Type>
+  </oos:Types>
+  
+	<oos:SourceFragments>
+		<oos:SourceFragment id="tblEntity1" name="entity1" selector="dbo" />
+    <oos:SourceFragment id="tblEntity2" name="entity2" selector="dbo" />
+	</oos:SourceFragments>
+	
+  <oos:Entities>
+		<oos:Entity id="eEntity1" name="Entity1" namespace="xxx">
+			<oos:SourceFragments>
+				<oos:SourceFragment ref="tblEntity1"/>
+			</oos:SourceFragments>
+			<oos:Properties>
+				<oos:Property attributes="PrimaryKey" fieldName="id" name="Identifier1" propertyAlias="ID" table="tblEntity1" type="tInt32" fieldTypeName="int" fieldNullable="false" />
+			</oos:Properties>
+      <oos:Relations>
+        <oos:Relation entity="eEntity2" />
+      </oos:Relations>
+    </oos:Entity>
+
+    <oos:Entity id="eEntity2" name="Entity2" namespace="xxx.yyy">
+      <oos:SourceFragments>
+        <oos:SourceFragment ref="tblEntity2"/>
+      </oos:SourceFragments>
+      <oos:Properties>
+        <oos:Property attributes="PrimaryKey" fieldName="id" name="Identifier1" table="tblEntity2" type="tInt32" fieldTypeName="int" fieldNullable="false" />
+        <oos:Property fieldName="name" name="Name" table="tblEntity2" type="tString" fieldTypeName="varchar" fieldNullable="false" fieldTypeSize="100" />
+        <oos:EntityProperty name="Ent" referencedEntity="eEntity1" table="tblEntity2">
+          <oos:field fieldName="ent1_id" relatedProperty="ID" />
+        </oos:EntityProperty>
+      </oos:Properties>
+    </oos:Entity>
+
+    <oos:Entity id="Entity3" name="Entity3">
+      <oos:Properties>
+        <oos:Property name="Prop1" type="tInt32" />
+      </oos:Properties>
+    </oos:Entity>
+	</oos:Entities>
+</oos:WXMLModel>

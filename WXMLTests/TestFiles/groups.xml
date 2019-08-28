@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<oos:WXMLModel defaultNamespace="test" 
+               xmlns:oos="http://wise-orm.com/WXMLSchema.xsd" 
+               >
+  <oos:Includes>
+    <xi:include parse="xml" href="types.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  </oos:Includes>
+  <oos:SourceFragments>
+    <oos:SourceFragment id="tbl1" name="tbl1" />
+  </oos:SourceFragments>
+  <oos:Entities>
+    <oos:Entity id="e1" name="E1">
+      <oos:SourceFragments>
+        <oos:SourceFragment ref="tbl1"/>
+			</oos:SourceFragments>
+      <oos:Properties>
+        <oos:Property name="Identifier1" attributes="PrimaryKey" table="tbl1" type="tInt32" description="prop" propertyAlias="ID" fieldName="id" />
+        <oos:Property name="Title" table="tbl1" type="tString" description="prop title" fieldName="title" fieldTypeName="nvarchar" fieldTypeSize="50" fieldNullable="false"/>
+        <oos:Group name="grp">
+          <oos:Property name="prop1" table="tbl1" type="tString" fieldName="prop1" />
+          <oos:Property name="prop2" table="tbl1" type="tString" fieldName="prop2" />
+        </oos:Group>
+        <oos:Group name="grp1" hide="false">
+          <oos:Property name="prop3" table="tbl1" type="tString" fieldName="prop3" />
+          <oos:Property name="prop4" table="tbl1" type="tString" fieldName="prop4" />
+        </oos:Group>
+        <oos:Property name="Size" table="tbl1" type="tInt32" description="prop title" fieldName="sz" fieldTypeName="int" />
+			</oos:Properties>
+		</oos:Entity>
+	</oos:Entities>
+</oos:WXMLModel>
